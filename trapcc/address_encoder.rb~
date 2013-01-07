@@ -1,0 +1,14 @@
+require 'bitmask'
+require 'singleton'
+class AddressEncoder
+  include Singleton
+  def initialize
+    @tss_addr = Bitmask("xxxx xxxx -00- ---- 1--0 1001 xxxx xxxx xxxx xxxx xxxx xxxx ---- ---- ---- ---- ")
+  end
+  def make_intr_frame(ec,eip,cs)
+    ec << 48 | eip << 16 | cs
+  end
+  def decode_a(eip,cs)                     #  Point
+     a_mask = Bitmask.new("1xx01001")
+  end
+end

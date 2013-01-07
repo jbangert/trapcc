@@ -1,0 +1,2 @@
+sample.c : ../*.rb ../standalone.c
+	 ../interrupt_program.rb

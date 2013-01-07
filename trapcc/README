@@ -1,0 +1,7 @@
+Input:
+
+[variable]= value
+[label:] (x,a,b)
+
+a,b : labels
+x: variable

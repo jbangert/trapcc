@@ -1,0 +1,34 @@
+require "rubygems"
+require "bundler "
+Bundler.require(:default)
+require 'singleton'
+
+require 'set'
+
+class Program
+  include Singleton
+  def initialize
+    @variables = {}
+    @statements = {}
+    @min_ram = 0
+  end
+  def add_statement(label=nil, x,a,b)
+    label = statements.size.to_s if label.nil? 
+    @statements[label] = {:a => a, :b => b, :x => x}
+  end
+  def add_variable(name,initialvalue)
+    unless name in @variables
+      @variables[name] = {:value => initialvalue}
+    end
+  end
+  def assign_addresses
+    target_a = Set.new @statements.map {|x| x[:a]}
+    target_b = Set.new @statements.map {|x| x[:b]}
+    target_both = target_a + target_b
+    target_a = target_a - target_both
+    target_b = target_b - target_both
+    
+    # For now we just assign the universal addresses ( 1xx0 1001 x00x xxxx 1yy0 1001 y00y y000 ) 
+  end
+
+end
