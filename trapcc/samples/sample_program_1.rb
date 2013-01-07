@@ -114,5 +114,5 @@ class GameOfLifeProgram
     end
   end
 end
-print exit_program.encode
+print counter_program.encode
 #print GameOfLifeProgram.new(2, [[1,1 ], [1,1]]).source
