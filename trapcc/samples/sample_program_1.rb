@@ -14,11 +14,10 @@ end
 def exit_program
   p = Program.new()
   p.variable :reset, 20
-  p.variable :evencounter, 3
-  p.variable :oddcounter, 3
+  p.variable :evencounter, 8
+  p.variable :oddcounter, 8
   p.instruction :dec_odd, :oddcounter, :evencounter, :dec_even , :exit, 0
   p.instruction :dec_even, :evencounter, :oddcounter, :dec_odd, :exit , 1
-  p.instruction :exit, :evencounter, :reset, :dec_odd, :dec_even, 2 #This always takes the a branch
   p.start :dec_odd
   p
 

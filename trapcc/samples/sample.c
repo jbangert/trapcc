@@ -327,31 +327,29 @@ u_int *pde_ptr = PFN2VIRT((base_pfn+19)) /* pd dec_odd */; int i;
     for(i = 0; i< 1024; i++){
         pde_ptr[i] = PG_U | PG_A | PG_W;
     }
-pte_ptr[0] = PFN2VIRT((base_pfn+25)) /* pt dec_odd 0 */;
-pde_ptr[0] |= PG_P| ((base_pfn+25) << 12);
+pte_ptr[0] = PFN2VIRT((base_pfn+24)) /* pt dec_odd 0 */;
+pde_ptr[0] |= PG_P| ((base_pfn+24) << 12);
       for(i=0; i<1024; i++){
         pte_ptr[0][i] = PG_A| PG_U;
       }
 pte_ptr[0][0] |= PG_P| PG_W | ((base_pfn+20) << 12);/* 0 -> 'stack_page' */ 
 pte_ptr[0][1023] |= PG_P| PG_W | ((base_pfn+3) << 12);/* 3ff000 -> 'gdt 0' */ 
-pte_ptr[1] = PFN2VIRT((base_pfn+26)) /* pt dec_odd 1 */;
-pde_ptr[1] |= PG_P| ((base_pfn+26) << 12);
+pte_ptr[1] = PFN2VIRT((base_pfn+25)) /* pt dec_odd 1 */;
+pde_ptr[1] |= PG_P| ((base_pfn+25) << 12);
       for(i=0; i<1024; i++){
         pte_ptr[1][i] = PG_A| PG_U;
       }
 pte_ptr[1][0] |= PG_P| PG_W | ((base_pfn+2) << 12);/* 400000 -> 'var oddcounter' */ 
 pte_ptr[1][15] |= PG_P| PG_W | ((base_pfn+22) << 12);/* 40f000 -> 'ins dec_even' */ 
 pte_ptr[1][16] |= PG_P| PG_W | ((base_pfn+2) << 12);/* 410000 -> 'var oddcounter' */ 
-pte_ptr[1][31] |= PG_P| PG_W | ((base_pfn+23) << 12);/* 41f000 -> 'ins exit' */ 
-pte_ptr[1][32] |= PG_P| PG_W | ((base_pfn+0) << 12);/* 420000 -> 'var reset' */ 
-pte_ptr[4] = PFN2VIRT((base_pfn+27)) /* pt dec_odd 4 */;
-pde_ptr[4] |= PG_P| ((base_pfn+27) << 12);
+pte_ptr[4] = PFN2VIRT((base_pfn+26)) /* pt dec_odd 4 */;
+pde_ptr[4] |= PG_P| ((base_pfn+26) << 12);
       for(i=0; i<1024; i++){
         pte_ptr[4][i] = PG_A| PG_U;
       }
-pte_ptr[4][0] |= PG_P| PG_W | ((base_pfn+24) << 12);/* 1000000 -> 'IDT dec_odd' */ 
-pte_ptr[6] = PFN2VIRT((base_pfn+28)) /* pt dec_odd 6 */;
-pde_ptr[6] |= PG_P| ((base_pfn+28) << 12);
+pte_ptr[4][0] |= PG_P| PG_W | ((base_pfn+23) << 12);/* 1000000 -> 'IDT dec_odd' */ 
+pte_ptr[6] = PFN2VIRT((base_pfn+27)) /* pt dec_odd 6 */;
+pde_ptr[6] |= PG_P| ((base_pfn+27) << 12);
       for(i=0; i<1024; i++){
         pte_ptr[6][i] = PG_A| PG_U;
       }
@@ -377,85 +375,33 @@ pde_ptr[3] = PG_P | PG_PS | PG_U | PG_W | PG_A | PG_PS | (3 << 22);
  
 { 
  u_int **pte_ptr = ALLOC_PTEPTR_ARRAY(); 
-u_int *pde_ptr = PFN2VIRT((base_pfn+29)) /* pd dec_even */; int i; 
+u_int *pde_ptr = PFN2VIRT((base_pfn+28)) /* pd dec_even */; int i; 
     for(i = 0; i< 1024; i++){
         pde_ptr[i] = PG_U | PG_A | PG_W;
     }
-pte_ptr[0] = PFN2VIRT((base_pfn+31)) /* pt dec_even 0 */;
-pde_ptr[0] |= PG_P| ((base_pfn+31) << 12);
+pte_ptr[0] = PFN2VIRT((base_pfn+30)) /* pt dec_even 0 */;
+pde_ptr[0] |= PG_P| ((base_pfn+30) << 12);
       for(i=0; i<1024; i++){
         pte_ptr[0][i] = PG_A| PG_U;
       }
 pte_ptr[0][0] |= PG_P| PG_W | ((base_pfn+20) << 12);/* 0 -> 'stack_page' */ 
 pte_ptr[0][1023] |= PG_P| PG_W | ((base_pfn+21) << 12);/* 3ff000 -> 'ins dec_odd' */ 
-pte_ptr[1] = PFN2VIRT((base_pfn+32)) /* pt dec_even 1 */;
-pde_ptr[1] |= PG_P| ((base_pfn+32) << 12);
+pte_ptr[1] = PFN2VIRT((base_pfn+31)) /* pt dec_even 1 */;
+pde_ptr[1] |= PG_P| ((base_pfn+31) << 12);
       for(i=0; i<1024; i++){
         pte_ptr[1][i] = PG_A| PG_U;
       }
 pte_ptr[1][0] |= PG_P| PG_W | ((base_pfn+1) << 12);/* 400000 -> 'var evencounter' */ 
 pte_ptr[1][15] |= PG_P| PG_W | ((base_pfn+4) << 12);/* 40f000 -> 'gdt 1' */ 
 pte_ptr[1][16] |= PG_P| PG_W | ((base_pfn+1) << 12);/* 410000 -> 'var evencounter' */ 
-pte_ptr[1][31] |= PG_P| PG_W | ((base_pfn+23) << 12);/* 41f000 -> 'ins exit' */ 
-pte_ptr[1][32] |= PG_P| PG_W | ((base_pfn+0) << 12);/* 420000 -> 'var reset' */ 
-pte_ptr[4] = PFN2VIRT((base_pfn+33)) /* pt dec_even 4 */;
-pde_ptr[4] |= PG_P| ((base_pfn+33) << 12);
+pte_ptr[4] = PFN2VIRT((base_pfn+32)) /* pt dec_even 4 */;
+pde_ptr[4] |= PG_P| ((base_pfn+32) << 12);
       for(i=0; i<1024; i++){
         pte_ptr[4][i] = PG_A| PG_U;
       }
-pte_ptr[4][0] |= PG_P| PG_W | ((base_pfn+30) << 12);/* 1000000 -> 'IDT dec_even' */ 
-pte_ptr[6] = PFN2VIRT((base_pfn+34)) /* pt dec_even 6 */;
-pde_ptr[6] |= PG_P| ((base_pfn+34) << 12);
-      for(i=0; i<1024; i++){
-        pte_ptr[6][i] = PG_A| PG_U;
-      }
-pte_ptr[6][0] |= PG_P| PG_W | ((base_pfn+3) << 12);/* 1800000 -> 'gdt 0' */ 
-pte_ptr[6][1] |= PG_P| PG_W | ((base_pfn+4) << 12);/* 1801000 -> 'gdt 1' */ 
-pte_ptr[6][2] |= PG_P| PG_W | ((base_pfn+5) << 12);/* 1802000 -> 'gdt 2' */ 
-pte_ptr[6][3] |= PG_P| PG_W | ((base_pfn+6) << 12);/* 1803000 -> 'gdt 3' */ 
-pte_ptr[6][4] |= PG_P| PG_W | ((base_pfn+7) << 12);/* 1804000 -> 'gdt 4' */ 
-pte_ptr[6][5] |= PG_P| PG_W | ((base_pfn+8) << 12);/* 1805000 -> 'gdt 5' */ 
-pte_ptr[6][6] |= PG_P| PG_W | ((base_pfn+9) << 12);/* 1806000 -> 'gdt 6' */ 
-pte_ptr[6][7] |= PG_P| PG_W | ((base_pfn+10) << 12);/* 1807000 -> 'gdt 7' */ 
-pte_ptr[6][8] |= PG_P| PG_W | ((base_pfn+11) << 12);/* 1808000 -> 'gdt 8' */ 
-pte_ptr[6][9] |= PG_P| PG_W | ((base_pfn+12) << 12);/* 1809000 -> 'gdt 9' */ 
-pte_ptr[6][10] |= PG_P| PG_W | ((base_pfn+13) << 12);/* 180a000 -> 'gdt 10' */ 
-pte_ptr[6][11] |= PG_P| PG_W | ((base_pfn+14) << 12);/* 180b000 -> 'gdt 11' */ 
-pte_ptr[6][12] |= PG_P| PG_W | ((base_pfn+15) << 12);/* 180c000 -> 'gdt 12' */ 
-pte_ptr[6][13] |= PG_P| PG_W | ((base_pfn+16) << 12);/* 180d000 -> 'gdt 13' */ 
-pte_ptr[6][14] |= PG_P| PG_W | ((base_pfn+17) << 12);/* 180e000 -> 'gdt 14' */ 
-pte_ptr[6][15] |= PG_P| PG_W | ((base_pfn+18) << 12);/* 180f000 -> 'gdt 15' */ 
-pde_ptr[3] = PG_P | PG_PS | PG_U | PG_W | PG_A | PG_PS | (3 << 22); 
-}
- /* exit : evencounter <- reset , dec_odd , dec_even */ 
- 
-{ 
- u_int **pte_ptr = ALLOC_PTEPTR_ARRAY(); 
-u_int *pde_ptr = PFN2VIRT((base_pfn+35)) /* pd 9172420 */; int i; 
-    for(i = 0; i< 1024; i++){
-        pde_ptr[i] = PG_U | PG_A | PG_W;
-    }
-pte_ptr[0] = PFN2VIRT((base_pfn+37)) /* pt 9172420 0 */;
-pde_ptr[0] |= PG_P| ((base_pfn+37) << 12);
-      for(i=0; i<1024; i++){
-        pte_ptr[0][i] = PG_A| PG_U;
-      }
-pte_ptr[0][0] |= PG_P| PG_W | ((base_pfn+20) << 12);/* 0 -> 'stack_page' */ 
-pte_ptr[1] = PFN2VIRT((base_pfn+38)) /* pt 9172420 1 */;
-pde_ptr[1] |= PG_P| ((base_pfn+38) << 12);
-      for(i=0; i<1024; i++){
-        pte_ptr[1][i] = PG_A| PG_U;
-      }
-pte_ptr[1][31] |= PG_P| PG_W | ((base_pfn+23) << 12);/* 41f000 -> 'ins exit' */ 
-pte_ptr[1][32] |= PG_P| PG_W | ((base_pfn+1) << 12);/* 420000 -> 'var evencounter' */ 
-pte_ptr[4] = PFN2VIRT((base_pfn+39)) /* pt 9172420 4 */;
-pde_ptr[4] |= PG_P| ((base_pfn+39) << 12);
-      for(i=0; i<1024; i++){
-        pte_ptr[4][i] = PG_A| PG_U;
-      }
-pte_ptr[4][0] |= PG_P| PG_W | ((base_pfn+36) << 12);/* 1000000 -> 'IDT exit' */ 
-pte_ptr[6] = PFN2VIRT((base_pfn+40)) /* pt 9172420 6 */;
-pde_ptr[6] |= PG_P| ((base_pfn+40) << 12);
+pte_ptr[4][0] |= PG_P| PG_W | ((base_pfn+29) << 12);/* 1000000 -> 'IDT dec_even' */ 
+pte_ptr[6] = PFN2VIRT((base_pfn+33)) /* pt dec_even 6 */;
+pde_ptr[6] |= PG_P| ((base_pfn+33) << 12);
       for(i=0; i<1024; i++){
         pte_ptr[6][i] = PG_A| PG_U;
       }
@@ -479,25 +425,25 @@ pde_ptr[3] = PG_P | PG_PS | PG_U | PG_W | PG_A | PG_PS | (3 << 22);
 }
 { 
  u_int **pte_ptr = ALLOC_PTEPTR_ARRAY(); 
-u_int *pde_ptr = PFN2VIRT((base_pfn+41)) /* pd initial_pd */; int i; 
+u_int *pde_ptr = PFN2VIRT((base_pfn+34)) /* pd initial_pd */; int i; 
     for(i = 0; i< 1024; i++){
         pde_ptr[i] = PG_U | PG_A | PG_W;
     }
-pte_ptr[0] = PFN2VIRT((base_pfn+42)) /* pt initial_pd 0 */;
-pde_ptr[0] |= PG_P| ((base_pfn+42) << 12);
+pte_ptr[0] = PFN2VIRT((base_pfn+35)) /* pt initial_pd 0 */;
+pde_ptr[0] |= PG_P| ((base_pfn+35) << 12);
       for(i=0; i<1024; i++){
         pte_ptr[0][i] = PG_A| PG_U;
       }
 pte_ptr[0][0] |= PG_P| PG_W | ((base_pfn+20) << 12);/* 0 -> 'stack_page' */ 
 pte_ptr[0][1023] |= PG_P| PG_W | ((base_pfn+21) << 12);/* 3ff000 -> 'ins dec_odd' */ 
-pte_ptr[1] = PFN2VIRT((base_pfn+43)) /* pt initial_pd 1 */;
-pde_ptr[1] |= PG_P| ((base_pfn+43) << 12);
+pte_ptr[1] = PFN2VIRT((base_pfn+36)) /* pt initial_pd 1 */;
+pde_ptr[1] |= PG_P| ((base_pfn+36) << 12);
       for(i=0; i<1024; i++){
         pte_ptr[1][i] = PG_A| PG_U;
       }
 pte_ptr[1][0] |= PG_P| PG_W | ((base_pfn+1) << 12);/* 400000 -> 'var evencounter' */ 
-pte_ptr[6] = PFN2VIRT((base_pfn+44)) /* pt initial_pd 6 */;
-pde_ptr[6] |= PG_P| ((base_pfn+44) << 12);
+pte_ptr[6] = PFN2VIRT((base_pfn+37)) /* pt initial_pd 6 */;
+pde_ptr[6] |= PG_P| ((base_pfn+37) << 12);
       for(i=0; i<1024; i++){
         pte_ptr[6][i] = PG_A| PG_U;
       }
@@ -520,14 +466,7 @@ pte_ptr[6][15] |= PG_P| PG_W | ((base_pfn+18) << 12);/* 180f000 -> 'gdt 15' */
 pde_ptr[3] = PG_P | PG_PS | PG_U | PG_W | PG_A | PG_PS | (3 << 22); 
 }
 *((u_int *)((char *)(PFN2VIRT(0) + 8)))/* var reset + 8 */ = 20 ;
-*((u_int *)((char *)(PFN2VIRT(0) + 24)))/* var reset + 24 */ = 0x10 ;
-*((u_int *)((char *)(PFN2VIRT(0) + 28)))/* var reset + 28 */ = 0x8 /*CS*/ ;
-*((u_int *)((char *)(PFN2VIRT(0) + 32)))/* var reset + 32 */ = 0x10 ;
-*((u_int *)((char *)(PFN2VIRT(0) + 36)))/* var reset + 36 */ = 0x10 ;
-*((u_int *)((char *)(PFN2VIRT(0) + 40)))/* var reset + 40 */ = 0x10 ;
-*((u_int *)((char *)(PFN2VIRT(0) + 44)))/* var reset + 44 */ = 0x10 ;
-*((u_int *)((char *)(PFN2VIRT(0) + 48)))/* var reset + 48 */ = 0x0 ;
-*((u_int *)((char *)(PFN2VIRT(1) + 8)))/* var evencounter + 8 */ = 3 ;
+*((u_int *)((char *)(PFN2VIRT(1) + 8)))/* var evencounter + 8 */ = 8 ;
 *((u_int *)((char *)(PFN2VIRT(1) + 24)))/* var evencounter + 24 */ = 0x10 ;
 *((u_int *)((char *)(PFN2VIRT(1) + 28)))/* var evencounter + 28 */ = 0x8 /*CS*/ ;
 *((u_int *)((char *)(PFN2VIRT(1) + 32)))/* var evencounter + 32 */ = 0x10 ;
@@ -535,7 +474,7 @@ pde_ptr[3] = PG_P | PG_PS | PG_U | PG_W | PG_A | PG_PS | (3 << 22);
 *((u_int *)((char *)(PFN2VIRT(1) + 40)))/* var evencounter + 40 */ = 0x10 ;
 *((u_int *)((char *)(PFN2VIRT(1) + 44)))/* var evencounter + 44 */ = 0x10 ;
 *((u_int *)((char *)(PFN2VIRT(1) + 48)))/* var evencounter + 48 */ = 0x0 ;
-*((u_int *)((char *)(PFN2VIRT(2) + 8)))/* var oddcounter + 8 */ = 3 ;
+*((u_int *)((char *)(PFN2VIRT(2) + 8)))/* var oddcounter + 8 */ = 8 ;
 *((u_int *)((char *)(PFN2VIRT(2) + 24)))/* var oddcounter + 24 */ = 0x10 ;
 *((u_int *)((char *)(PFN2VIRT(2) + 28)))/* var oddcounter + 28 */ = 0x8 /*CS*/ ;
 *((u_int *)((char *)(PFN2VIRT(2) + 32)))/* var oddcounter + 32 */ = 0x10 ;
@@ -586,43 +525,33 @@ pde_ptr[3] = PG_P | PG_PS | PG_U | PG_W | PG_A | PG_PS | (3 << 22);
 *((u_int *)((char *)(PFN2VIRT(21) + 4084)))/* ins dec_odd + 4084 */ = reflags() ;
 *((u_int *)((char *)(PFN2VIRT(21) + 4088)))/* ins dec_odd + 4088 */ = 65535 | ((4194256 & 0xFFFF) << 16) /* Base: 4194256 */ ;
 *((u_int *)((char *)(PFN2VIRT(21) + 4092)))/* ins dec_odd + 4092 */ = ((4194256 &0x00FF0000) >> 16) | (137 << 8)|(255) << 16 |( 4194256 & 0xFF000000) /* Type 137 */ ;
-*((u_int *)((char *)(PFN2VIRT(22) + 4076)))/* ins dec_even + 4076 */ = (base_pfn+29) << 12 /*CR3: pd dec_even */ ;
+*((u_int *)((char *)(PFN2VIRT(22) + 4076)))/* ins dec_even + 4076 */ = (base_pfn+28) << 12 /*CR3: pd dec_even */ ;
 *((u_int *)((char *)(PFN2VIRT(22) + 4080)))/* ins dec_even + 4080 */ = 0xfffefff /*EIP */ ;
 *((u_int *)((char *)(PFN2VIRT(22) + 4084)))/* ins dec_even + 4084 */ = reflags() ;
 *((u_int *)((char *)(PFN2VIRT(22) + 4088)))/* ins dec_even + 4088 */ = 65535 | ((4259792 & 0xFFFF) << 16) /* Base: 4259792 */ ;
 *((u_int *)((char *)(PFN2VIRT(22) + 4092)))/* ins dec_even + 4092 */ = ((4259792 &0x00FF0000) >> 16) | (137 << 8)|(255) << 16 |( 4259792 & 0xFF000000) /* Type 137 */ ;
-*((u_int *)((char *)(PFN2VIRT(23) + 4076)))/* ins exit + 4076 */ = (base_pfn+35) << 12 /*CR3: pd 9172420 */ ;
-*((u_int *)((char *)(PFN2VIRT(23) + 4080)))/* ins exit + 4080 */ = 0xfffefff /*EIP */ ;
-*((u_int *)((char *)(PFN2VIRT(23) + 4084)))/* ins exit + 4084 */ = reflags() ;
-*((u_int *)((char *)(PFN2VIRT(23) + 4088)))/* ins exit + 4088 */ = 65535 | ((4325328 & 0xFFFF) << 16) /* Base: 4325328 */ ;
-*((u_int *)((char *)(PFN2VIRT(23) + 4092)))/* ins exit + 4092 */ = ((4325328 &0x00FF0000) >> 16) | (137 << 8)|(255) << 16 |( 4325328 & 0xFF000000) /* Type 137 */ ;
-*((u_int *)((char *)(PFN2VIRT(24) + 64)))/* IDT dec_odd + 64 */ = 804782080/* TSS 0x2ff8 */ ;
-*((u_int *)((char *)(PFN2VIRT(24) + 68)))/* IDT dec_odd + 68 */ = 58624/* Task gate */ ;
-*((u_int *)((char *)(PFN2VIRT(24) + 112)))/* IDT dec_odd + 112 */ = 536346624/* TSS 0x1ff8 */ ;
-*((u_int *)((char *)(PFN2VIRT(24) + 116)))/* IDT dec_odd + 116 */ = 58624/* Task gate */ ;
-*((u_int *)((char *)(PFN2VIRT(30) + 64)))/* IDT dec_even + 64 */ = 804782080/* TSS 0x2ff8 */ ;
-*((u_int *)((char *)(PFN2VIRT(30) + 68)))/* IDT dec_even + 68 */ = 58624/* Task gate */ ;
-*((u_int *)((char *)(PFN2VIRT(30) + 112)))/* IDT dec_even + 112 */ = 267911168/* TSS 0xff8 */ ;
-*((u_int *)((char *)(PFN2VIRT(30) + 116)))/* IDT dec_even + 116 */ = 58624/* Task gate */ ;
-*((u_int *)((char *)(PFN2VIRT(36) + 64)))/* IDT exit + 64 */ = 1572864/* TSS 0x18 */ ;
-*((u_int *)((char *)(PFN2VIRT(36) + 68)))/* IDT exit + 68 */ = 58624/* Task gate */ ;
-*((u_int *)((char *)(PFN2VIRT(36) + 112)))/* IDT exit + 112 */ = 1572864/* TSS 0x18 */ ;
-*((u_int *)((char *)(PFN2VIRT(36) + 116)))/* IDT exit + 116 */ = 58624/* Task gate */ ;
+*((u_int *)((char *)(PFN2VIRT(23) + 64)))/* IDT dec_odd + 64 */ = 1572864/* TSS 0x18 */ ;
+*((u_int *)((char *)(PFN2VIRT(23) + 68)))/* IDT dec_odd + 68 */ = 58624/* Task gate */ ;
+*((u_int *)((char *)(PFN2VIRT(23) + 112)))/* IDT dec_odd + 112 */ = 536346624/* TSS 0x1ff8 */ ;
+*((u_int *)((char *)(PFN2VIRT(23) + 116)))/* IDT dec_odd + 116 */ = 58624/* Task gate */ ;
+*((u_int *)((char *)(PFN2VIRT(29) + 64)))/* IDT dec_even + 64 */ = 1572864/* TSS 0x18 */ ;
+*((u_int *)((char *)(PFN2VIRT(29) + 68)))/* IDT dec_even + 68 */ = 58624/* Task gate */ ;
+*((u_int *)((char *)(PFN2VIRT(29) + 112)))/* IDT dec_even + 112 */ = 267911168/* TSS 0xff8 */ ;
+*((u_int *)((char *)(PFN2VIRT(29) + 116)))/* IDT dec_even + 116 */ = 58624/* Task gate */ ;
     }
     void zero_memory()
     {
         int i;
-        for(i=0;i<45;i++)
+        for(i=0;i<38;i++)
          memset((char *)(PFN2VIRT(i) ), 0,4096);
     }
     void begin_computation(){
-      load_cr3((base_pfn+41) << 12); /* Begin the fun */
+      load_cr3((base_pfn+34) << 12); /* Begin the fun */
       __asm __volatile ("lcall  $0xff8, $0x0");
     }
 /* Instructions 
 ff8 dec_odd 13
-1ff8 dec_even 1d
-2ff8 exit 23
+1ff8 dec_even 1c
 */
 /* Pages
 0 var reset
@@ -648,26 +577,19 @@ f000 gdt 12
 14000 stack_page
 15000 ins dec_odd
 16000 ins dec_even
-17000 ins exit
-18000 IDT dec_odd
-19000 pt dec_odd 0
-1a000 pt dec_odd 1
-1b000 pt dec_odd 4
-1c000 pt dec_odd 6
-1d000 pd dec_even
-1e000 IDT dec_even
-1f000 pt dec_even 0
-20000 pt dec_even 1
-21000 pt dec_even 4
-22000 pt dec_even 6
-23000 pd 9172420
-24000 IDT exit
-25000 pt 9172420 0
-26000 pt 9172420 1
-27000 pt 9172420 4
-28000 pt 9172420 6
-29000 pd initial_pd
-2a000 pt initial_pd 0
-2b000 pt initial_pd 1
-2c000 pt initial_pd 6
+17000 IDT dec_odd
+18000 pt dec_odd 0
+19000 pt dec_odd 1
+1a000 pt dec_odd 4
+1b000 pt dec_odd 6
+1c000 pd dec_even
+1d000 IDT dec_even
+1e000 pt dec_even 0
+1f000 pt dec_even 1
+20000 pt dec_even 4
+21000 pt dec_even 6
+22000 pd initial_pd
+23000 pt initial_pd 0
+24000 pt initial_pd 1
+25000 pt initial_pd 6
 */

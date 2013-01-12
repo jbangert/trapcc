@@ -145,43 +145,43 @@ class Program
     #CompactPageTable.map_global(GDT_ADDRESS, (GDT_ADDRESS >> 22) )
     #Map kernel code
     CompactPageTable.map_global(0x000C00000,   (0x000C00000>> 22))
+
     @instructions.each do |label, i|
       src <<" /* #{i} */ \n \n"
-      if label == :exit
-        pt = CompactPageTable.new(phys)
-        pt.map(IDT_ADDRESS, "IDT #{i.label}")
-        pt.map(0,'stack_page')
-        map_gdt(pt,GDT_ADDRESS)
-        encode_idt(pt,IDT_ADDRESS,0x18,0x18)
-        pt.map(i.addr, i.page)
-        pt.map(i.addr + 1.page,i.x_page)
-        i.pt = pt
-        encode_tss(pt,i.addr,EIP_INVALID,GLOBAL_CS,GLOBAL_EFLAGS)
-        src << pt.mapping_source_code
-        next
-      end
-      raise RuntimeError.new "#{i.a_label} not found" unless @instructions.has_key? i.a_label
-      raise RuntimeError.new "#{i.b_label} not found" unless @instructions.has_key? i.b_label
-      a = @instructions[i.a_label]
-      b = @instructions[i.b_label]
-      raise RuntimeError.new "A and B need different slots" if a.tss_slot == b.tss_slot && a !=b
-      raise RuntimeError.new "A and X need different slots" unless a.tss_slot != i.tss_slot
-      raise RuntimeError.new "A and X need different slots" unless b.tss_slot != i.tss_slot
 
       pt = CompactPageTable.new(phys, label)
       pt.map(0,'stack_page')
       pt.map(i.addr,  i.page)
       pt.map(i.addr + 1.page, i.x_page)
-      pt.map(a.addr + 1.page, a.y_page)      # TODO: Only map B if A!=B
-      pt.map(a.addr, a.page)
-      if(a!= b)
-        pt.map(b.addr, b.page)
-        pt.map(b.addr + 1.page, b.y_page)       # We need to insure this is a valid page. X page is ok, but Y page not necessarily.
-                                              # Therefore, just encode them both again
+      b_tss_slot = 0
+      a_tss_slot = 0
+      if(i.a_label != :exit)
+        a = @instructions[i.a_label]
+        raise RuntimeError.new "#{i.a_label} not found" unless @instructions.has_key? i.a_label
+        raise RuntimeError.new "A and X need different slots" unless a.tss_slot != i.tss_slot
+        pt.map(a.addr + 1.page, a.y_page)      # TODO: Only map B if A!=B
+        pt.map(a.addr, a.page)
+        encode_tss_high(pt,a.addr)
+        a_tss_slot = a.tss_slot
+      else
+        a_tss_slot = 0x18
       end
+      if(i.b_label != :exit)
+        raise RuntimeError.new "#{i.b_label} not found" unless @instructions.has_key? i.b_label
+        b = @instructions[i.b_label]
+        raise RuntimeError.new "A and X need different slots" unless b.tss_slot != i.tss_slot
+        if(i.a_label != b.a_label)
+          pt.map(b.addr, b.page)
+          pt.map(b.addr + 1.page, b.y_page)       # We need to insure this is a valid page. X page is ok, but Y page not necessarily.
+                                                  # Therefore, just encode them both again
+          encode_tss_high(pt,b.addr)
+        end
+      else
+        b_tss_slot = 0x18
 
-      encode_tss_high(pt,a.addr)
-      encode_tss_high(pt,b.addr)
+      end
+      raise RuntimeError.new "A and B need different slots" if a_tss_slot == b_tss_slot && i.a_label !=i._label
+
       pt.map(IDT_ADDRESS, "IDT #{i.label}")
       if debug_nop
         pt.map(EIP_INVALID, "NOP page")
@@ -190,7 +190,7 @@ class Program
       map_gdt(pt,GDT_ADDRESS)
       encode_tss(pt,i.addr, EIP_INVALID, GLOBAL_CS, GLOBAL_EFLAGS)
       pt.remap(i.addr, i.gdt_desc_page) # EAX:ECX will overwrite the GDT descriptor
-      encode_idt(pt,IDT_ADDRESS,b.tss_slot,a.tss_slot)
+      encode_idt(pt,IDT_ADDRESS,b_tss_slot,a_tss_slot)
       src << pt.mapping_source_code()
       i.pt = pt
     end

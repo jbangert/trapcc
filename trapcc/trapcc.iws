@@ -14,16 +14,30 @@
     <option name="historyRevisionsNumber" value="4" />
   </component>
   <component name="ChangeListManager">
-    <list id="dbd57b9d-2545-4491-9cad-593c1a0a829c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trapcc.iws" afterPath="$PROJECT_DIR$/trapcc.iws" />
-    </list>
+    <list id="dbd57b9d-2545-4491-9cad-593c1a0a829c" name="Default" comment="" />
     <list default="true" id="5a208f7b-1e51-42d4-8fb4-b8d7f79d8e39" name="New changelist" comment="Properly shifting in pagetables now">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/interrupt_program.rb" afterPath="$PROJECT_DIR$/interrupt_program.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/sample_program_1.rb" afterPath="$PROJECT_DIR$/samples/sample_program_1.rb" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.bundle/config" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Gemfile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/README" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/compact_page_table.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/interrupt_program.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/samples/.gdbinit" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/samples/Makefile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/samples/buildhddimg.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/samples/linker.ld" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/samples/loader.S" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/samples/sample_program_1.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/standalone.c" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/pagetable_test.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/trapcc.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/trapcc.ipr" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/trapcc.iws" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/trapcc.rb" afterPath="" />
     </list>
     <ignored path="trapcc.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="$PROJECT_DIR$/trapcc.iws" changelist="5a208f7b-1e51-42d4-8fb4-b8d7f79d8e39" time="1356311349920" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +101,7 @@
       <file leaf-file-name="sample_program_1.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/samples/sample_program_1.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="6" selection-start="830" selection-end="830" vertical-scroll-proportion="0.53276354">
+            <state line="19" column="73" selection-start="707" selection-end="707" vertical-scroll-proportion="0.1630137">
               <folding />
             </state>
           </provider>
@@ -96,7 +110,7 @@
       <file leaf-file-name="interrupt_program.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/interrupt_program.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="151" column="52" selection-start="5218" selection-end="5218" vertical-scroll-proportion="0.0">
+            <state line="150" column="0" selection-start="5110" selection-end="5110" vertical-scroll-proportion="-18.24">
               <folding />
             </state>
           </provider>
@@ -173,9 +187,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="Favorites" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -210,6 +221,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Favorites" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -226,8 +240,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -594,7 +608,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="52" width="1535" height="848" extended-state="7" />
+    <frame x="65" y="24" width="1535" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3060686" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -607,11 +621,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32585752" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Script Monkey" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14401077" sideWeight="0.33561644" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14333782" sideWeight="0.34300792" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39973083" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14401077" sideWeight="0.6534247" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14333782" sideWeight="0.646438" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3812665" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -801,21 +815,19 @@
     </entry>
     <entry file="file://$USER_HOME$/.IntelliJIdea10/config/plugins/ruby/rubystubs/rubystubs19/array.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="917" column="15" selection-start="29345" selection-end="29348" vertical-scroll-proportion="0.02328767">
-          <folding />
-        </state>
+        <state line="917" column="15" selection-start="29345" selection-end="29348" vertical-scroll-proportion="0.02328767" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/interrupt_program.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="151" column="52" selection-start="5218" selection-end="5218" vertical-scroll-proportion="0.0">
+        <state line="150" column="0" selection-start="5110" selection-end="5110" vertical-scroll-proportion="-18.24">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/samples/sample_program_1.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="6" selection-start="830" selection-end="830" vertical-scroll-proportion="0.53276354">
+        <state line="19" column="73" selection-start="707" selection-end="707" vertical-scroll-proportion="0.1630137">
           <folding />
         </state>
       </provider>
