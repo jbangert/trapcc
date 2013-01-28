@@ -23,7 +23,7 @@ class PhysicalPageManager
     {
         int i;
         for(i=0;i<#{@page_labels.size};i++)
-         memset((char *)(PFN2VIRT(i) ), 0,4096);
+         memset((char *)(PFN2VIRT(base_pfn+i) ), 0,4096);
     }
     eof
   end
@@ -32,7 +32,7 @@ class PhysicalPageManager
     @pages.sort.each do |page_number,page|
       page.sort.each do |addr,value|
         raise ArgumentError "Tried to map offset #{addr} > 4095 in page #{page_number}" if addr > 4096-4
-        src << "*((u_int *)((char *)(PFN2VIRT(#{page_number}) + #{addr})))"
+        src << "*((u_int *)((char *)(PFN2VIRT(base_pfn+#{page_number}) + #{addr})))"
         src << "/* #{@page_labels[page_number]} + #{addr} */ = #{value.to_s} ;\n"
       end
     end
@@ -47,7 +47,7 @@ class PhysicalPageManager
     src
   end
   def pfn_number(tag)
-    @page_offsets[tag] || 0
+    @page_offsets[tag] || 0 # RuntimeError.new ("Unknown page #{tag}")
   end
   def pfn_code(tag)
     "(base_pfn+#{pfn_number(tag)})"

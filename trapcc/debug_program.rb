@@ -12,6 +12,9 @@ class DebugProgram
     raise RuntimeError.new "#{label} instruction redefined" if @instructions.include? label
     @instructions[label] = {x: x, y: y, a: a, b: b, slot: tss_slot }
   end
+  def output_binary(x,y,var)
+
+  end
   def variable(label,initial_value)
     @variables[label]=initial_value
   end
@@ -35,6 +38,7 @@ class DebugProgram
         @variables.include? @instructions[@pc][:y]
     if(@variables[@instructions[@pc][:y]] < 4)
       @pc = @instructions[@pc][:b]
+      raise RuntimeError.new "TRIPLEFAULT! #{@pc}" if @variables[@instructions[@pc][:y]] < 4
     else
       @variables[@instructions[@pc][:x]] =  @variables[@instructions[@pc][:y]] -4
       @pc = @instructions[@pc][:a]

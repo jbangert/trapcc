@@ -46,6 +46,7 @@ class Program
     @instructions  = {}
     @variables = {}
     @first_instruction = nil
+    @outputs_bin = []
   end
   DEFAULT_VARIABLE_VALUE = 4
   def instruction(label,x,y,a,b,tss_slot)
@@ -114,7 +115,10 @@ class Program
     pt[addr + 40] , pt[addr +44] = gdt_entry(GDT_TSS, addr, 0xFFFFFFFF)
     encode_tss_high(pt,addr)
   end
-    def encode_tss_high(pt,addr)
+  def output_binary(y,x, variable)
+    @outputs_bin << {x: x, y: y, variable: variable}
+  end
+  def encode_tss_high(pt,addr)
     pt[addr + 72] = "0x10"
     pt[addr + 76] = "0x8 /*CS*/"         #TODO: Check that we don't overwrite
     pt[addr + 80] = "0x10"
@@ -128,7 +132,6 @@ class Program
   GLOBAL_CS = 0x8
   GLOBAL_DS = 0x10
   GLOBAL_EFLAGS = 0
-  INITIAL_TSS_ADDR = 0
   def encode(debug_nop = false)
     phys = PhysicalPageManager.new()
     #CompactPageTable.map_global(0xC00_000,3) #TODO: Get rid of global mapping
@@ -176,11 +179,10 @@ class Program
           pt.map(b.addr + 1.page, b.y_page)       # We need to insure this is a valid page. X page is ok, but Y page not necessarily.
                                                   # Therefore, just encode them both again
           encode_tss_high(pt,b.addr)
-          b_tss_slot = b.tss_slot
         end
+        b_tss_slot = b.tss_slot
       else
         b_tss_slot = 0x18
-
       end
       raise RuntimeError.new "A and B need different slots" if a_tss_slot == b_tss_slot && i.a_label !=i.b_label
 
@@ -213,9 +215,16 @@ eof
     src << <<-eof
     void begin_computation(){
       load_cr3(#{@initial_pt.cr3()}); /* Begin the fun */
-      __asm __volatile ("lcall  $0x#{@first_instruction.tss_slot.to_s(16)}, $0x0");
-    }
+      __asm __volatile ("ljmp  $0x#{@first_instruction.tss_slot.to_s(16)}, $0x0");
 eof
+    @outputs_bin.each do |out|
+      raise RuntimeError.new "Unknown output variable #{out[:variable]}" unless @variables.include? out[:variable]
+      src << "OUTPUT(#{out[:x]},#{out[:y]}," <<
+          " *((unsigned int *)(#{phys.initialization_ptr("var #{out[:variable]}")} + #{56+TSS_ALIGN})) < 4 ? ' ' : 'X');\n"
+    end
+
+    src << "}\n"
+
     src << "/* Instructions \n"
     @instructions.each do |label,i|
       src << "#{i.tss_slot.to_s(16)} #{label} #{phys.pfn_number(i.pt.cr3_tag).to_s(16)}\n"
@@ -223,6 +232,7 @@ eof
     src << "*/"
     src << phys.dump_mapping_info()
   end
+
   def sim_step
     inst = @first_instruction
     raise "Undefined references" unless @variables.include?(@first_instruction.x) and @variables.include?(@first_instruction.y)

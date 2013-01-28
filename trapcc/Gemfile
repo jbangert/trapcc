@@ -1,2 +1,4 @@
 source 'http://rubygems.org'
 gem 'test-unit', '<=2.4.8 '
+gem 'pry'
+gem 'tk'

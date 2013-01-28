@@ -1,10 +1,18 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    coderay (1.0.8)
+    method_source (0.8.1)
+    pry (0.9.11.4)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    slop (3.4.3)
     test-unit (2.4.8)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  pry
   test-unit (<= 2.4.8)

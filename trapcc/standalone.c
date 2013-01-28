@@ -82,6 +82,7 @@ static inline void setchar(unsigned int line, unsigned int off, unsigned char ch
    videoram[line * NUM_CHARS * 2+2*off] = character; /* character 'A' */
    videoram[line * NUM_CHARS * 2+ 2 *off + 1] = 0x07; /* light grey (7) on black (0). */
 }
+#define OUTPUT(x,y,char) setchar(y,x,char)
 static inline void clear_screen(){
   for(int l=0;l<24;l++){
     for(int c=0;c<80;c++){
@@ -223,9 +224,8 @@ extern void asmSetIDTR(void *IDT,unsigned int size);
 #define PAGE_OFFSET(x) (x* (1ul<<12))
 #define HUGEPAGE_OFFSET(x) (x * (1ul << 22))
 #define IDT_ADDRESS 0x1000000
-#define MAX_PDES 32
-#define MAX_MEMORY HUGEPAGE_OFFSET(MAX_PDES) // 128 MB ram mapped directly
-#define PAGE_DIRECTORY (MAX_MEMORY - HUGEPAGE_OFFSET(1)) // Start pagetables at 124 MB ram.
+#define MAX_PDES 512
+#define PAGE_DIRECTORY ( HUGEPAGE_OFFSET(31)) // Start pagetables at 124 MB ram.
 #define MAP_PAGE(virt,phys) pde[virt]= (phys << 22) | PG_P | PG_W | PG_U | PG_PS;
 
 void init_paging(){
@@ -290,16 +290,24 @@ void kmain(void)
    PRINT_STRING("And loaded a GDT\n");   
    //init_idt();
    //PRINT_STRING("And it's neighbour the IDT\n");4
-   PRINT_STRING("Let's party!\n");
+   PRINT_STRING("Arrange the buffet\n");
    interrupt_program();
    asmSetIDTR(IDT_ADDRESS,256*8 - 1);
    /* Pagefault. this will save the TSS state*/
    // begin_computation();
-   begin_computation();
-   __asm __volatile ("lcall  $0x30, $0x0");
+   PRINT_STRING("Let the party started!\n");
+   while(1){
+     int i =0;
+     volatile int j = 0;
+     begin_computation();  
+     // encode_gdt(g_gdt[3],0x89,g_tss_ptr,0xFFFFFF); /*TSS0 0x18*/  
+     for(i=0; i< (1<<24); i++){
+       j=4;
+     }
+   }
+   //__asm __volatile ("lcall  $0x30, $0x0");
    //lcr3(INIT_PAGETABLE);
-   PRINT_STRING("How the hell did we get here?");
-   while(1){}
+     while(1){}
 }
 
 void memset(void *s,int c,unsigned int sz){
@@ -313,6 +321,6 @@ u_int *_tmp[4096];
 /* STANDALONE specific code */
 #define ALLOC_PTEPTR_ARRAY() _tmp /* Allocation is used only once */
 /* TODO: Free */
-#define PFN2VIRT(x) ((char *)(x<<12))
-#define VIRT2PFN(x) (((u_int)x)>>12)
-const u_int base_pfn = 0;
+#define PFN2VIRT(x) ((char *)( (x)<<12))
+#define VIRT2PFN(x) (((u_int)(x))>>12)
+const u_int base_pfn =  32 *  1024;

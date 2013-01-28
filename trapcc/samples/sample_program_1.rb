@@ -21,6 +21,8 @@ def exit_program
   p.instruction :dec_odd, :oddcounter, :evencounter, :dec_even , :exit, 0
   p.instruction :dec_even, :evencounter, :oddcounter, :dec_odd, :exit , 1
   p.start :dec_odd
+  p.output_binary 1,0, :evencounter
+  p.output_binary 1,1, :reset
   p
 
 end
@@ -37,14 +39,15 @@ def subtract_program
 end
 
 
-#print exit_program.encode
+#print counter_program.encode
 X=4
-glider = GameOfLifeProgram.new(Program,5, [[0,0,0,0,0],
+glider = GameOfLifeProgram.new(DebugProgram,5, [[0,0,0,0,0],
                                                          [0,0,0,X,0],
                                                          [0,X,0,X,0],
                                                          [0,0,X,X,0],
                                                          [0,0,0,0,0]])
-print glider.source
+debug_gol_program(glider)
+#print glider.source
 
 #debug_gol_program(GameOfLifeProgram.new(DebugProgram,3,[[0,0,0],[0,1,0],[0,0,0]]))
 

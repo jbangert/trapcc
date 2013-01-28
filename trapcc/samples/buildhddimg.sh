@@ -5,7 +5,7 @@
  
 # ---- begin config params ----
  
-harddisk_image_size=$((1*1024*1024)) # 4 megabytes
+harddisk_image_size=$((4*1024*1024)) # 4 megabytes
 harddisk_image="harddisk.img"
 qemu_cmdline="qemu -monitor stdio"
 kernel_args=""
