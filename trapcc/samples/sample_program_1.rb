@@ -1,4 +1,5 @@
 require_relative '../interrupt_program'
+require_relative '../debug_program'
 def counter_program
   p = Program.new()
   p.variable :reset, 20
@@ -35,24 +36,36 @@ def subtract_program
 end
 
 class GameOfLifeProgram
-  def initialize(size,init)
+  attr_accessor :size
+  def initialize(programClass,size,init)
     @size = size
-    @p = Program.new()
+    @p = programClass.new()
     @p.variable :const_9, 9*4
     @p.variable :const_1, 4
     @p.variable :const_2, 2*4
+    @p.variable :const_3, 3*4
 
     @p.variable :counter, 9*4
     @p.instruction :exit, :tmp_var,:counst_9 , 0x18, 0x18, 15
     next_inst = :exit
+    cells = []
     (0..size-1).each do |x |
       (0..size-1).each do |y |
-        @p.variable "CellX#{x}Y#{y}", init[x][y]
+        @p.variable "NewCellX#{x}Y#{y}", 4096
+        @p.variable "CellX#{x}Y#{y}", init[x][y] > 0 ? 4 : 0
         c = Cell.new(x,y,size)
-        next_inst = c.instructions(@p,next_inst)
+        cells << c
+        next_inst = c.copy_instructions(@p,next_inst)
       end
     end
+    cells.each do |c|
+      next_inst = c.step_instructions(@p,next_inst)
+    end
     @p.start next_inst
+  end
+
+  def program
+    @p
   end
   def source
     @p.encode
@@ -64,54 +77,58 @@ class GameOfLifeProgram
     def initialize(x,y,size)
       @x,@y,@size = x,y,size
     end
-    def dec_x_if_y(p, x,y,nxt)  # 1 2
-      ins =  "dec #{x} if #{y} A"
-      s1 = "check #{ins}"
-      s2 = "dec #{ins}"
-      s3 = "noop out #{ins}"
-      p.instruction s1, :tmp_var, :y, s2, s3 , 1
+    def dec_x_ifnot_y(label,p, x,y,nxt)  # 1 2
+      s1 = "check #{label}"
+      s2 = "dec #{label}"
+      s3 = "noop out #{label}"
+      p.instruction s1, :tmp_var, y, s3, s2 , 1  # Decrement if this was an underflow
       p.instruction s2, x, x, s3 , s3, 2
       p.instruction s3, :tmp_var, :const_9 , nxt,nxt , 3
       s1
     end
     def n(dx,dy)
-      return (@x+dx)%@size, (@y+dy)%@size
+      return "CellX#{(@x+dx)%@size}Y#{(@y+dy)%@size}"
     end
     def cellvar
       "Cell#{name}"
     end
-    def instructions(p, next_inst)
-      p.instruction "die#{name}", cellvar, :const_1 , next_inst , next_inst, 4
-      p.instruction "live#{name}", cellvar, :const_2, next_inst,next_inst, 5
+    def cellnewvar
+      "NewCell#{name}"
+    end
+    def copy_instructions(p,next_inst)
+      p.instruction "copy#{name}", cellvar, cellnewvar, next_inst, next_inst
+    end
+    def step_instructions(p, next_inst)
+      p.instruction "die#{name}", cellnewvar, :const_2 , next_inst , next_inst, 4
+      p.instruction "live#{name}", cellnewvar, :const_3, next_inst,next_inst, 5
       p.instruction "maint#{name}", :tmp_var, cellvar, "live#{name}", "die#{name}", 6
 
       #Read this bottoms up
       tl,t,tr = n(-1,-1), n(-1,0), n(-1,1)
       l,r = n(-1,0), n(1,0)
       bl,b,br = n(1,-1), n(1,0), n(1,1)
-      p.instruction "0-#{name}", :counter, :counter, "1-#{name}", "die#{name}",7   # 8 live cells
-      p.instruction "1-#{name}", :counter, :counter, "2-#{name}", "die#{name}",8   # 7 live cells
-      p.instruction "2-#{name}", :counter, :counter, "3-#{name}", "die#{name}",9   # 6 live cells
-      p.instruction "3-#{name}", :counter, :counter, "4-#{name}", "die#{name}",10   # 5 live cells
-      p.instruction "4-#{name}", :counter, :counter, "5-#{name}", "die#{name}",11   # 4 live cells
-      # End of overcrowding
-      p.instruction "5-#{name}", :counter, :counter, "6-#{name}", "live#{name}",12   # 3 live cells
-      p.instruction "6-#{name}", :counter, :counter, "die#{name}", "maint#{name}",13   # 2 live cells
+      p.instruction "0-#{name}", :counter, :counter, "1-#{name}", "die#{name}",7   # 0 live cells
+      p.instruction "1-#{name}", :counter, :counter, "2-#{name}", "die#{name}",8   # 1 live cell
+      p.instruction "2-#{name}", :counter, :counter, "3-#{name}", "maint#{name}",9   # 2 live
+      p.instruction "3-#{name}", :counter, :counter, "die-#{name}", "live#{name}",10   # 3 live cells
       #If less, you die
-      # above here, :counter has the number of dead neighbours
-      a= dec_x_if_y(p,:counter,tl,a)
-      a=dec_x_if_y(p,:counter,t,a)
-      a=dec_x_if_y(p,:counter,tr,a)
-      a=dec_x_if_y(p,:counter,l,a)
-      a=dec_x_if_y(p,:counter,r,a)
-      a= dec_x_if_y(p,:counter,br,a)
-      a=dec_x_if_y(p,:counter,bl,a)
-      a=dec_x_if_y(p,:counter,b,a)
+      # above here, :counter has the number of  live neighbours
+      a= dec_x_ifnot_y("cdec TL #{name}",p,:counter,tl,"0-#{name}")
+      a=dec_x_ifnot_y("cdec T #{name}",p,:counter,t,a)
+      a=dec_x_ifnot_y("cdec TR #{name}",p,:counter,tr,a)
+      a=dec_x_ifnot_y("cdec L #{name}",p,:counter,l,a)
+      a=dec_x_ifnot_y("cdec R #{name}",p,:counter,r,a)
+      a= dec_x_ifnot_y("cdec BR #{name}",p,:counter,br,a)
+      a=dec_x_ifnot_y("cdec B #{name}",p,:counter,bl,a)
+      a=dec_x_ifnot_y("cdec BL #{name}",p,:counter,b,a)
       p.instruction "#{name} init_ctr", :counter, :const_9, a,a, 0
       "#{name} init_ctr"
       #TODO: Add exit instruction
     end
   end
 end
-print exit_program.encode
-#print GameOfLifeProgram.new(2, [[1,1 ], [1,1]]).source
+
+#print exit_program.encode
+#debug_gol_program(GameOfLifeProgram.new(DebugProgram,4, [[1,1,1,1 ], [1,1,1,1], [1,1,1,1], [1,1,1,1]]))
+debug_gol_program(GameOfLifeProgram.new(DebugProgram,2,[[1,1],[1,1]]))
+

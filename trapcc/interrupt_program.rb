@@ -51,6 +51,7 @@ class Program
   def instruction(label,x,y,a,b,tss_slot)
     i = Instruction.new
     i.program ,i.label, i.x , i.y, i.a_label ,i.b_label = self,label,x,y,a,b
+    raise RuntimeError.new "Duplicate instruction #{label}" if @instructions.include? label
     @instructions[label] = i
     i.tss_slot = tss_slot  * GDT_ENTRY_STEP + GDT_FIRST_ENTRY
     @variables[i.x] ||= DEFAULT_VARIABLE_VALUE
