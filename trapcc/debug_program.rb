@@ -1,10 +1,10 @@
 require 'set'
 class DebugProgram
   # To change this template use File | Settings | File Templates.
-  def initialize(trace=true)
+  def initialize(trace=false)
     @variables ={}
     @instructions = {}
-    @pc = :exit
+    @start = :exit
     @breakpoints = Set.new
     @trace = trace
   end
@@ -22,7 +22,7 @@ class DebugProgram
     @variables = vars
   end
   def start(label)
-    @pc = label
+    @start = label
   end
   def breakpoint(label)
     @breakpoints.add(label)
@@ -42,6 +42,7 @@ class DebugProgram
 
   end
   def encode() # This actually runs the debugger
+    @pc = @start
     while @pc != :exit
       if @trace
         print "#{@pc} : #{@instructions[@pc][:x]} <- #{@instructions[@pc][:y]} (#{@variables[@instructions[@pc][:y]]/4}) -1 \n"
@@ -56,7 +57,7 @@ class DebugProgram
 end
 
 def debug_gol_program(p)# Debugs graphical programs
-  (1..2).each do |iteration|
+  (1..50).each do |iteration|
     print "Game of Life iteration #{iteration}\n"
     (0..p.size-1).each do |y|
       (0..(p.size-1)).each do |x|
@@ -72,5 +73,6 @@ def debug_gol_program(p)# Debugs graphical programs
       putc "\n"
     end
     p.program.encode() # Run in debugger
+
   end
 end
