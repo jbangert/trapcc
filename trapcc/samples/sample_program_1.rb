@@ -96,7 +96,8 @@ class GameOfLifeProgram
       "NewCell#{name}"
     end
     def copy_instructions(p,next_inst)
-      p.instruction "copy#{name}", cellvar, cellnewvar, next_inst, next_inst
+      p.instruction "copy#{name}", cellvar, cellnewvar, next_inst, next_inst, 11
+      "copy#{name}"
     end
     def step_instructions(p, next_inst)
       p.instruction "die#{name}", cellnewvar, :const_2 , next_inst , next_inst, 4
@@ -110,7 +111,7 @@ class GameOfLifeProgram
       p.instruction "0-#{name}", :counter, :counter, "1-#{name}", "die#{name}",7   # 0 live cells
       p.instruction "1-#{name}", :counter, :counter, "2-#{name}", "die#{name}",8   # 1 live cell
       p.instruction "2-#{name}", :counter, :counter, "3-#{name}", "maint#{name}",9   # 2 live
-      p.instruction "3-#{name}", :counter, :counter, "die-#{name}", "live#{name}",10   # 3 live cells
+      p.instruction "3-#{name}", :counter, :counter, "die#{name}", "live#{name}",10   # 3 live cells
       #If less, you die
       # above here, :counter has the number of  live neighbours
       a= dec_x_ifnot_y("cdec TL #{name}",p,:counter,tl,"0-#{name}")
