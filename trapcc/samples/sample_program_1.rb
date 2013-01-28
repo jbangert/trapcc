@@ -39,11 +39,12 @@ end
 
 #print exit_program.encode
 X=4
-debug_gol_program(GameOfLifeProgram.new(DebugProgram,5, [[0,0,0,0,0],
+glider = GameOfLifeProgram.new(Program,5, [[0,0,0,0,0],
                                                          [0,0,0,X,0],
                                                          [0,X,0,X,0],
                                                          [0,0,X,X,0],
-                                                         [0,0,0,0,0]]))
+                                                         [0,0,0,0,0]])
+print glider.source
 
 #debug_gol_program(GameOfLifeProgram.new(DebugProgram,3,[[0,0,0],[0,1,0],[0,0,0]]))
 

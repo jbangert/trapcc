@@ -158,8 +158,8 @@ class Program
       a_tss_slot = 0
       if(i.a_label != :exit)
         a = @instructions[i.a_label]
-        raise RuntimeError.new "#{i.a_label} not found" unless @instructions.has_key? i.a_label
-        raise RuntimeError.new "A and X need different slots" unless a.tss_slot != i.tss_slot
+        raise RuntimeError.new "#{i.label} : #{i.a_label} not found" unless @instructions.has_key? i.a_label
+        raise RuntimeError.new "#{label}: A and this need different slots" unless a.tss_slot != i.tss_slot
         pt.map(a.addr + 1.page, a.y_page)      # TODO: Only map B if A!=B
         pt.map(a.addr, a.page)
         encode_tss_high(pt,a.addr)
@@ -170,18 +170,19 @@ class Program
       if(i.b_label != :exit)
         raise RuntimeError.new "#{i.b_label} not found" unless @instructions.has_key? i.b_label
         b = @instructions[i.b_label]
-        raise RuntimeError.new "A and X need different slots" unless b.tss_slot != i.tss_slot
-        if(i.a_label != b.a_label)
+        raise RuntimeError.new "#{label}: B and this need different slots" unless b.tss_slot != i.tss_slot
+        if(i.a_label != i.b_label)
           pt.map(b.addr, b.page)
           pt.map(b.addr + 1.page, b.y_page)       # We need to insure this is a valid page. X page is ok, but Y page not necessarily.
                                                   # Therefore, just encode them both again
           encode_tss_high(pt,b.addr)
+          b_tss_slot = b.tss_slot
         end
       else
         b_tss_slot = 0x18
 
       end
-      raise RuntimeError.new "A and B need different slots" if a_tss_slot == b_tss_slot && i.a_label !=i._label
+      raise RuntimeError.new "A and B need different slots" if a_tss_slot == b_tss_slot && i.a_label !=i.b_label
 
       pt.map(IDT_ADDRESS, "IDT #{i.label}")
       if debug_nop
