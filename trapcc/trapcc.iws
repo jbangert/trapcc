@@ -98,46 +98,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="sample_program_1.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="sample_program_1.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/samples/sample_program_1.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="36" selection-start="1254" selection-end="1254" vertical-scroll-proportion="-8.56">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="game_of_life.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../trapcc-public/trapcc/game_of_life.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="0" selection-start="651" selection-end="651" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="game_of_life.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/game_of_life.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="87" column="42" selection-start="3026" selection-end="3028" vertical-scroll-proportion="-6.12">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="debug_program.rb" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/debug_program.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="81" selection-start="1350" selection-end="1350" vertical-scroll-proportion="0.75475687">
+            <state line="50" column="34" selection-start="1674" selection-end="1674" vertical-scroll-proportion="0.7671233">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="debug_program.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../trapcc-public/trapcc/debug_program.rb">
+        <entry file="file://$PROJECT_DIR$/debug_program.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="0" selection-start="1131" selection-end="1131" vertical-scroll-proportion="0.0">
+            <state line="62" column="0" selection-start="1794" selection-end="1794" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -146,7 +119,7 @@
       <file leaf-file-name="interrupt_program.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/interrupt_program.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="249" column="21" selection-start="9060" selection-end="9060" vertical-scroll-proportion="-13.84">
+            <state line="64" column="0" selection-start="2152" selection-end="2152" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -180,14 +153,14 @@
         <option value="$PROJECT_DIR$/compact_page_table.rb" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/debug_gui.rb" />
-        <option value="$PROJECT_DIR$/../../trapcc-public/trapcc/game_of_life.rb" />
-        <option value="$PROJECT_DIR$/../../trapcc-public/trapcc/debug_program.rb" />
         <option value="$PROJECT_DIR$/../../trapcc-public/trapcc/interrupt_program.rb" />
         <option value="$PROJECT_DIR$/../../trapcc-public/trapcc/compact_page_table.rb" />
         <option value="$PROJECT_DIR$/game_of_life.rb" />
+        <option value="$PROJECT_DIR$/../../trapcc-public/trapcc/debug_program.rb" />
+        <option value="$PROJECT_DIR$/../../trapcc-public/trapcc/game_of_life.rb" />
         <option value="$PROJECT_DIR$/interrupt_program.rb" />
-        <option value="$PROJECT_DIR$/samples/sample_program_1.rb" />
         <option value="$PROJECT_DIR$/debug_program.rb" />
+        <option value="$PROJECT_DIR$/samples/sample_program_1.rb" />
       </list>
     </option>
   </component>
@@ -223,9 +196,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Favorites" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -250,6 +220,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Favorites" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -651,8 +624,8 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39973083" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25100943" sideWeight="0.6781003" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32189974" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25100943" sideWeight="0.6781003" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32097188" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35224274" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -774,19 +747,19 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/debug_program.rb</url>
-          <line>78</line>
+          <line>82</line>
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/samples/sample_program_1.rb</url>
-          <line>51</line>
+          <line>52</line>
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/../../trapcc-public/trapcc/debug_program.rb</url>
-          <line>74</line>
+          <line>79</line>
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/../../trapcc-public/trapcc/game_of_life.rb</url>
-          <line>30</line>
+          <line>37</line>
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -850,42 +823,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../../trapcc-public/trapcc/debug_program.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="0" selection-start="1131" selection-end="1131" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interrupt_program.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="249" column="21" selection-start="9060" selection-end="9060" vertical-scroll-proportion="-13.84">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/samples/sample_program_1.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="36" selection-start="1254" selection-end="1254" vertical-scroll-proportion="-8.56">
+        <state line="1" column="18" selection-start="32" selection-end="32" vertical-scroll-proportion="0.036876354">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../trapcc-public/trapcc/game_of_life.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="651" selection-end="651" vertical-scroll-proportion="0.0">
+        <state line="21" column="55" selection-start="703" selection-end="703" vertical-scroll-proportion="-9.4">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/game_of_life.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="42" selection-start="3026" selection-end="3028" vertical-scroll-proportion="-6.12">
+        <state line="42" column="0" selection-start="1134" selection-end="1134" vertical-scroll-proportion="0.02328767" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interrupt_program.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="64" column="0" selection-start="2152" selection-end="2152" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/debug_program.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="81" selection-start="1350" selection-end="1350" vertical-scroll-proportion="0.75475687">
+        <state line="62" column="0" selection-start="1794" selection-end="1794" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/samples/sample_program_1.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="34" selection-start="1674" selection-end="1674" vertical-scroll-proportion="0.7671233">
           <folding />
         </state>
       </provider>

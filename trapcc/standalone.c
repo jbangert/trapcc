@@ -295,7 +295,7 @@ void kmain(void)
    asmSetIDTR(IDT_ADDRESS,256*8 - 1);
    /* Pagefault. this will save the TSS state*/
    // begin_computation();
-   PRINT_STRING("Let the party started!\n");
+   PRINT_STRING("Get the party started!\n");
    while(1){
      int i =0;
      volatile int j = 0;

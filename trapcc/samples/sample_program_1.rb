@@ -41,13 +41,19 @@ end
 
 #print counter_program.encode
 X=4
-glider = GameOfLifeProgram.new(DebugProgram,5, [[0,0,0,0,0],
-                                                         [0,0,0,X,0],
-                                                         [0,X,0,X,0],
-                                                         [0,0,X,X,0],
-                                                         [0,0,0,0,0]])
-debug_gol_program(glider)
-#print glider.source
+glider = GameOfLifeProgram.new(Program,6,               [
+                                                         [X,X,0,0,0,0,0,0,0,0],
+                                                         [X,X,0,0,0,0,0,0,0,0],
+                                                         [0,0,X,X,0,0,0,0,0,0],
+                                                         [0,0,X,X,0,0,0,0,0,0],
+                                                         [0,0,0,0,0,0,0,0,0,0],
+                                                         [0,0,0,0,0,0,0,0,0,0],
+                                                         [0,0,0,0,0,0,0,0,0,0],
+                                                         [0,0,0,0,0,0,0,0,0,0],
+                                                         [0,0,0,0,0,0,0,0,0,0],
+                                                         [0,0,0,0,0,0,0,0,0,0]])
+#debug_gol_program(glider)
+print glider.source
 
 #debug_gol_program(GameOfLifeProgram.new(DebugProgram,3,[[0,0,0],[0,1,0],[0,0,0]]))
 

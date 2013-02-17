@@ -10,6 +10,6 @@ run:	kernel.bin harddisk.img
 	qemu-system-i386 -kernel kernel.bin  -net none -s -S -d int&
 clean:
 	rm *.o *.bin *.img sample.c
-sample.c : ../*.rb ../standalone.c
+sample.c : ../*.rb ../standalone.c *.rb
 	(cat ../standalone.c; ruby sample_program_1.rb) > sample.c
 

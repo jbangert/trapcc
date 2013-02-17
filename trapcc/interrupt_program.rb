@@ -46,7 +46,7 @@ class Program
     @instructions  = {}
     @variables = {}
     @first_instruction = nil
-    @outputs_bin = []
+    @outputs  = {}
   end
   DEFAULT_VARIABLE_VALUE = 4
   def instruction(label,x,y,a,b,tss_slot)
@@ -116,7 +116,10 @@ class Program
     encode_tss_high(pt,addr)
   end
   def output_binary(y,x, variable)
-    @outputs_bin << {x: x, y: y, variable: variable}
+    @outputs[[x,y]] = [:variable, variable]
+  end
+  def output_fixed(y,x, character)
+    @outputs[[x,y]] = [:character, character]
   end
   def encode_tss_high(pt,addr)
     pt[addr + 72] = "0x10"
@@ -217,12 +220,18 @@ eof
       load_cr3(#{@initial_pt.cr3()}); /* Begin the fun */
       __asm __volatile ("ljmp  $0x#{@first_instruction.tss_slot.to_s(16)}, $0x0");
 eof
-    @outputs_bin.each do |out|
-      raise RuntimeError.new "Unknown output variable #{out[:variable]}" unless @variables.include? out[:variable]
-      src << "OUTPUT(#{out[:x]},#{out[:y]}," <<
-          " *((unsigned int *)(#{phys.initialization_ptr("var #{out[:variable]}")} + #{56+TSS_ALIGN})) < 4 ? ' ' : 'X');\n"
+    @outputs.each do |coords, value|
+      type, var = value
+      outp_code = case type
+                    when :variable
+                      " *((unsigned int *)(#{phys.initialization_ptr("var #{var}")} + #{56+TSS_ALIGN})) < 4 ? ' ' : 'X'"
+                    when :character
+                      "'#{var}'"
+                    else
+                      raise RuntimeError.new
+                  end
+      src << "OUTPUT(#{coords[0]},#{coords[1]},#{outp_code});\n"
     end
-
     src << "}\n"
 
     src << "/* Instructions \n"

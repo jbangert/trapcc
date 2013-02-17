@@ -19,11 +19,18 @@ class GameOfLifeProgram
         val = init[y][x] > 0 ? 4 : 0
         @p.variable "X#{x}Y#{y}NewCell",val # 4096
         @p.variable "X#{x}Y#{y}Cell",      val
-        @p.output_binary 10+y, x, "X#{x}Y#{y}Cell"
+        @p.output_binary 10+y, x+1, "X#{x}Y#{y}Cell"
         c = Cell.new(x,y,size)
         cells << c
         next_inst = c.copy_instructions(@p,next_inst)
       end
+    end
+    (0..size).each do |i|
+      @p.output_fixed 9,i, "-"
+      @p.output_fixed 10+size,i,"-"
+      @p.output_fixed 10+i,0, "|"
+      @p.output_fixed 10+i,1+size, "|"
+
     end
     cells.each do |c|
       next_inst = c.step_instructions(@p,next_inst)

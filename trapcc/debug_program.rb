@@ -36,11 +36,12 @@ class DebugProgram
     raise RuntimeError.new "Invalid Instruction #{@pc}" unless @instructions.include? @pc
     raise RuntimeError.new "Instruction #{@instructions[@pc]} has invalid Y-variable" unless
         @variables.include? @instructions[@pc][:y]
-    if(@variables[@instructions[@pc][:y]] < 4)
+    y=   @variables[@instructions[@pc][:y]]
+    if(y < 4)
       @pc = @instructions[@pc][:b]
       raise RuntimeError.new "TRIPLEFAULT! #{@pc}" if @variables[@instructions[@pc][:y]] < 4
     else
-      @variables[@instructions[@pc][:x]] =  @variables[@instructions[@pc][:y]] -4
+      @variables[@instructions[@pc][:x]] =  y -4
       @pc = @instructions[@pc][:a]
     end
 
@@ -57,6 +58,9 @@ class DebugProgram
       end
     end
     @variables
+  end
+  def validate_bochs() #TBD: Validate steps in bochs!
+
   end
 end
 
