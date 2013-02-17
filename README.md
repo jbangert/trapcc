@@ -1,8 +1,6 @@
 trapcc
 ======
 
-Computing with traps.
+Compute with 0 instructions on Intel! Discover the awesomeness of the Intel MMU!
 
-
-More materials will be uploaded over the next 2 or 3 days - Sorry that I didn't get around to it before!
-========================================================================================================
+Follow @sergeybratus and @julianbangert for updates
