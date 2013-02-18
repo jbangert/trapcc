@@ -15,6 +15,9 @@ class DebugProgram
   def output_binary(x,y,var)
 
   end
+  def output_fixed(y,x,char)
+
+  end
   def variable(label,initial_value)
     @variables[label]=initial_value
   end
@@ -37,11 +40,16 @@ class DebugProgram
     raise RuntimeError.new "Instruction #{@instructions[@pc]} has invalid Y-variable" unless
         @variables.include? @instructions[@pc][:y]
     y=   @variables[@instructions[@pc][:y]]
+    print "R #{@instructions[@pc][:y]} #{y.to_s(16)}\n"
     if(y < 4)
+      @variables[@instructions[@pc][:x]] = y
+      printf "W #{@instructions[@pc][:x]} #{y.to_s(16).upcase}\n"
+
       @pc = @instructions[@pc][:b]
       raise RuntimeError.new "TRIPLEFAULT! #{@pc}" if @variables[@instructions[@pc][:y]] < 4
     else
       @variables[@instructions[@pc][:x]] =  y -4
+      print "W #{@instructions[@pc][:x]} #{(y-4).to_s(16).upcase}\n"
       @pc = @instructions[@pc][:a]
     end
 
@@ -57,13 +65,18 @@ class DebugProgram
         print "Breakpoint hit\n"
       end
     end
-    @variables
+    # @variables
   end
   def validate_bochs() #TBD: Validate steps in bochs!
 
   end
 end
 
+def run_gol_program(p)
+  while true
+    p.program.encode()
+  end
+end
 def debug_gol_program(p)# Debugs graphical programs
   (1..50).each do |iteration|
     print "Game of Life iteration #{iteration}\n"

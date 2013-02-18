@@ -49,6 +49,6 @@ glider = GameOfLifeProgram.new(Program,5,               [
                                                          [0,0,0,0,0],])
 #debug_gol_program(glider)
 print glider.source
-
+#run_gol_program(glider)
 #debug_gol_program(GameOfLifeProgram.new(DebugProgram,3,[[0,0,0],[0,1,0],[0,0,0]]))
 

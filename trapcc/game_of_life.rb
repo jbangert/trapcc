@@ -35,7 +35,8 @@ class GameOfLifeProgram
     cells.each do |c|
       next_inst = c.step_instructions(@p,next_inst)
     end
-    @p.start next_inst
+    @p.instruction :dummy_start, :tmp_var, :const_9, next_inst, next_inst, 14
+    @p.start :dummy_start
   end
 
   def program
@@ -98,7 +99,7 @@ class GameOfLifeProgram
       a=dec_x_ifnot_y("#{name} cdec TR",p,:counter,tr,a)
       a=dec_x_ifnot_y("#{name} cdec L",p,:counter,l,a)
       a=dec_x_ifnot_y("#{name} cdec R",p,:counter,r,a)
-      a= dec_x_ifnot_y("#{name} cdec BR",p,:counter,br,a)
+      a=dec_x_ifnot_y("#{name} cdec BR",p,:counter,br,a)
       a=dec_x_ifnot_y("#{name} cdec B",p,:counter,b,a)
       a=dec_x_ifnot_y("#{name} cdec BL",p,:counter,bl,a)
       p.instruction "#{name} init_ctr", :counter, :const_9, a,a, 0

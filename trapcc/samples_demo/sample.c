@@ -46525,27 +46525,79 @@ pte_ptr[6][14] |= PG_P| PG_W | ((base_pfn+70) << 12);/* 180e000 -> 'gdt 14' */
 pte_ptr[6][15] |= PG_P| PG_W | ((base_pfn+71) << 12);/* 180f000 -> 'gdt 15' */ 
 pde_ptr[3] = PG_P | PG_PS | PG_U | PG_W | PG_A | PG_PS | (3 << 22); 
 }
+ /* dummy_start : tmp_var <- const_9 , X4Y4 init_ctr , X4Y4 init_ctr */ 
+ 
 { 
  u_int **pte_ptr = ALLOC_PTEPTR_ARRAY(); 
-u_int *pde_ptr = PFN2VIRT((base_pfn+6205)) /* pd initial_pd */; int i; 
+u_int *pde_ptr = PFN2VIRT((base_pfn+6205)) /* pd dummy_start */; int i; 
     for(i = 0; i< 1024; i++){
         pde_ptr[i] = PG_U | PG_A | PG_W;
     }
-pte_ptr[0] = PFN2VIRT((base_pfn+6206)) /* pt initial_pd 0 */;
-pde_ptr[0] |= PG_P| ((base_pfn+6206) << 12);
+pte_ptr[0] = PFN2VIRT((base_pfn+6208)) /* pt dummy_start 0 */;
+pde_ptr[0] |= PG_P| ((base_pfn+6208) << 12);
       for(i=0; i<1024; i++){
         pte_ptr[0][i] = PG_A| PG_U;
       }
 pte_ptr[0][0] |= PG_P| PG_W | ((base_pfn+73) << 12);/* 0 -> 'stack_page' */ 
 pte_ptr[0][1023] |= PG_P| PG_W | ((base_pfn+6199) << 12);/* 3ff000 -> 'ins X4Y4 init_ctr' */ 
-pte_ptr[1] = PFN2VIRT((base_pfn+6207)) /* pt initial_pd 1 */;
-pde_ptr[1] |= PG_P| ((base_pfn+6207) << 12);
+pte_ptr[1] = PFN2VIRT((base_pfn+6209)) /* pt dummy_start 1 */;
+pde_ptr[1] |= PG_P| ((base_pfn+6209) << 12);
       for(i=0; i<1024; i++){
         pte_ptr[1][i] = PG_A| PG_U;
       }
 pte_ptr[1][0] |= PG_P| PG_W | ((base_pfn+0) << 12);/* 400000 -> 'var const_9' */ 
-pte_ptr[6] = PFN2VIRT((base_pfn+6208)) /* pt initial_pd 6 */;
-pde_ptr[6] |= PG_P| ((base_pfn+6208) << 12);
+pte_ptr[1][223] |= PG_P| PG_W | ((base_pfn+70) << 12);/* 4df000 -> 'gdt 14' */ 
+pte_ptr[1][224] |= PG_P| PG_W | ((base_pfn+5) << 12);/* 4e0000 -> 'var tmp_var' */ 
+pte_ptr[4] = PFN2VIRT((base_pfn+6210)) /* pt dummy_start 4 */;
+pde_ptr[4] |= PG_P| ((base_pfn+6210) << 12);
+      for(i=0; i<1024; i++){
+        pte_ptr[4][i] = PG_A| PG_U;
+      }
+pte_ptr[4][0] |= PG_P| PG_W | ((base_pfn+6207) << 12);/* 1000000 -> 'IDT dummy_start' */ 
+pte_ptr[6] = PFN2VIRT((base_pfn+6211)) /* pt dummy_start 6 */;
+pde_ptr[6] |= PG_P| ((base_pfn+6211) << 12);
+      for(i=0; i<1024; i++){
+        pte_ptr[6][i] = PG_A| PG_U;
+      }
+pte_ptr[6][0] |= PG_P| PG_W | ((base_pfn+56) << 12);/* 1800000 -> 'gdt 0' */ 
+pte_ptr[6][1] |= PG_P| PG_W | ((base_pfn+57) << 12);/* 1801000 -> 'gdt 1' */ 
+pte_ptr[6][2] |= PG_P| PG_W | ((base_pfn+58) << 12);/* 1802000 -> 'gdt 2' */ 
+pte_ptr[6][3] |= PG_P| PG_W | ((base_pfn+59) << 12);/* 1803000 -> 'gdt 3' */ 
+pte_ptr[6][4] |= PG_P| PG_W | ((base_pfn+60) << 12);/* 1804000 -> 'gdt 4' */ 
+pte_ptr[6][5] |= PG_P| PG_W | ((base_pfn+61) << 12);/* 1805000 -> 'gdt 5' */ 
+pte_ptr[6][6] |= PG_P| PG_W | ((base_pfn+62) << 12);/* 1806000 -> 'gdt 6' */ 
+pte_ptr[6][7] |= PG_P| PG_W | ((base_pfn+63) << 12);/* 1807000 -> 'gdt 7' */ 
+pte_ptr[6][8] |= PG_P| PG_W | ((base_pfn+64) << 12);/* 1808000 -> 'gdt 8' */ 
+pte_ptr[6][9] |= PG_P| PG_W | ((base_pfn+65) << 12);/* 1809000 -> 'gdt 9' */ 
+pte_ptr[6][10] |= PG_P| PG_W | ((base_pfn+66) << 12);/* 180a000 -> 'gdt 10' */ 
+pte_ptr[6][11] |= PG_P| PG_W | ((base_pfn+67) << 12);/* 180b000 -> 'gdt 11' */ 
+pte_ptr[6][12] |= PG_P| PG_W | ((base_pfn+68) << 12);/* 180c000 -> 'gdt 12' */ 
+pte_ptr[6][13] |= PG_P| PG_W | ((base_pfn+69) << 12);/* 180d000 -> 'gdt 13' */ 
+pte_ptr[6][14] |= PG_P| PG_W | ((base_pfn+70) << 12);/* 180e000 -> 'gdt 14' */ 
+pte_ptr[6][15] |= PG_P| PG_W | ((base_pfn+71) << 12);/* 180f000 -> 'gdt 15' */ 
+pde_ptr[3] = PG_P | PG_PS | PG_U | PG_W | PG_A | PG_PS | (3 << 22); 
+}
+{ 
+ u_int **pte_ptr = ALLOC_PTEPTR_ARRAY(); 
+u_int *pde_ptr = PFN2VIRT((base_pfn+6212)) /* pd initial_pd */; int i; 
+    for(i = 0; i< 1024; i++){
+        pde_ptr[i] = PG_U | PG_A | PG_W;
+    }
+pte_ptr[0] = PFN2VIRT((base_pfn+6213)) /* pt initial_pd 0 */;
+pde_ptr[0] |= PG_P| ((base_pfn+6213) << 12);
+      for(i=0; i<1024; i++){
+        pte_ptr[0][i] = PG_A| PG_U;
+      }
+pte_ptr[0][0] |= PG_P| PG_W | ((base_pfn+73) << 12);/* 0 -> 'stack_page' */ 
+pte_ptr[1] = PFN2VIRT((base_pfn+6214)) /* pt initial_pd 1 */;
+pde_ptr[1] |= PG_P| ((base_pfn+6214) << 12);
+      for(i=0; i<1024; i++){
+        pte_ptr[1][i] = PG_A| PG_U;
+      }
+pte_ptr[1][223] |= PG_P| PG_W | ((base_pfn+6206) << 12);/* 4df000 -> 'ins dummy_start' */ 
+pte_ptr[1][224] |= PG_P| PG_W | ((base_pfn+0) << 12);/* 4e0000 -> 'var const_9' */ 
+pte_ptr[6] = PFN2VIRT((base_pfn+6215)) /* pt initial_pd 6 */;
+pde_ptr[6] |= PG_P| ((base_pfn+6215) << 12);
       for(i=0; i<1024; i++){
         pte_ptr[6][i] = PG_A| PG_U;
       }
@@ -54930,16 +54982,25 @@ pde_ptr[3] = PG_P | PG_PS | PG_U | PG_W | PG_A | PG_PS | (3 << 22);
 *((u_int *)((char *)(PFN2VIRT(base_pfn+6200) + 68)))/* IDT X4Y4 init_ctr + 68 */ = 58624/* Task gate */ ;
 *((u_int *)((char *)(PFN2VIRT(base_pfn+6200) + 112)))/* IDT X4Y4 init_ctr + 112 */ = 536346624/* TSS 0x1ff8 */ ;
 *((u_int *)((char *)(PFN2VIRT(base_pfn+6200) + 116)))/* IDT X4Y4 init_ctr + 116 */ = 58624/* Task gate */ ;
+*((u_int *)((char *)(PFN2VIRT(base_pfn+6206) + 4076)))/* ins dummy_start + 4076 */ = (base_pfn+6205) << 12 /*CR3: pd dummy_start */ ;
+*((u_int *)((char *)(PFN2VIRT(base_pfn+6206) + 4080)))/* ins dummy_start + 4080 */ = 0xfffefff /*EIP */ ;
+*((u_int *)((char *)(PFN2VIRT(base_pfn+6206) + 4084)))/* ins dummy_start + 4084 */ = reflags() ;
+*((u_int *)((char *)(PFN2VIRT(base_pfn+6206) + 4088)))/* ins dummy_start + 4088 */ = 65535 | ((5111760 & 0xFFFF) << 16) /* Base: 5111760 */ ;
+*((u_int *)((char *)(PFN2VIRT(base_pfn+6206) + 4092)))/* ins dummy_start + 4092 */ = ((5111760 &0x00FF0000) >> 16) | (137 << 8)|(255) << 16 |( 5111760 & 0xFF000000) /* Type 137 */ ;
+*((u_int *)((char *)(PFN2VIRT(base_pfn+6207) + 64)))/* IDT dummy_start + 64 */ = 267911168/* TSS 0xff8 */ ;
+*((u_int *)((char *)(PFN2VIRT(base_pfn+6207) + 68)))/* IDT dummy_start + 68 */ = 58624/* Task gate */ ;
+*((u_int *)((char *)(PFN2VIRT(base_pfn+6207) + 112)))/* IDT dummy_start + 112 */ = 267911168/* TSS 0xff8 */ ;
+*((u_int *)((char *)(PFN2VIRT(base_pfn+6207) + 116)))/* IDT dummy_start + 116 */ = 58624/* Task gate */ ;
     }
     void zero_memory()
     {
         int i;
-        for(i=0;i<6209;i++)
+        for(i=0;i<6216;i++)
          memset((char *)(PFN2VIRT(base_pfn+i) ), 0,4096);
     }
     void begin_computation(){
-      load_cr3((base_pfn+6205) << 12); /* Begin the fun */
-      __asm __volatile ("ljmp  $0xff8, $0x0");
+      load_cr3((base_pfn+6212) << 12); /* Begin the fun */
+      __asm __volatile ("ljmp  $0xeff8, $0x0");
 OUTPUT(1,10, *((unsigned int *)(PFN2VIRT((base_pfn+7)) /* var X0Y0Cell */ + 8)) < 4 ? ' ' : 'X');
 OUTPUT(1,11, *((unsigned int *)(PFN2VIRT((base_pfn+9)) /* var X0Y1Cell */ + 8)) < 4 ? ' ' : 'X');
 OUTPUT(1,12, *((unsigned int *)(PFN2VIRT((base_pfn+11)) /* var X0Y2Cell */ + 8)) < 4 ? ' ' : 'X');
@@ -55866,6 +55927,7 @@ aff8 X4Y4-3 1788
 2ff8 X4Y4 cdec BL-dec 182a
 3ff8 X4Y4 cdec BL-nop 1830
 ff8 X4Y4 init_ctr 1836
+eff8 dummy_start 183d
 */
 /* Pages
 0 var const_9
@@ -62073,8 +62135,15 @@ fff000 pt X3Y0 cdec B-nop 1
 183a000 pt X4Y4 init_ctr 1
 183b000 pt X4Y4 init_ctr 4
 183c000 pt X4Y4 init_ctr 6
-183d000 pd initial_pd
-183e000 pt initial_pd 0
-183f000 pt initial_pd 1
-1840000 pt initial_pd 6
+183d000 pd dummy_start
+183e000 ins dummy_start
+183f000 IDT dummy_start
+1840000 pt dummy_start 0
+1841000 pt dummy_start 1
+1842000 pt dummy_start 4
+1843000 pt dummy_start 6
+1844000 pd initial_pd
+1845000 pt initial_pd 0
+1846000 pt initial_pd 1
+1847000 pt initial_pd 6
 */

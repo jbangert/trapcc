@@ -98,10 +98,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="sample_program_1.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="sample_program_1.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/samples/sample_program_1.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="34" selection-start="1674" selection-end="1674" vertical-scroll-proportion="0.7671233">
+            <state line="27" column="13" selection-start="890" selection-end="890" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -110,7 +110,25 @@
       <file leaf-file-name="debug_program.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/debug_program.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="62" column="0" selection-start="1794" selection-end="1794" vertical-scroll-proportion="0.0">
+            <state line="6" column="42" selection-start="189" selection-end="189" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="game_of_life.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/game_of_life.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="38" column="25" selection-start="1186" selection-end="1186" vertical-scroll-proportion="0.79041094">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="debug_gui.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/debug_gui.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="47" selection-start="358" selection-end="358" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -119,7 +137,7 @@
       <file leaf-file-name="interrupt_program.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/interrupt_program.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="0" selection-start="2152" selection-end="2152" vertical-scroll-proportion="0.0">
+            <state line="122" column="7" selection-start="4334" selection-end="4334" vertical-scroll-proportion="-12.6">
               <folding />
             </state>
           </provider>
@@ -155,12 +173,12 @@
         <option value="$PROJECT_DIR$/debug_gui.rb" />
         <option value="$PROJECT_DIR$/../../trapcc-public/trapcc/interrupt_program.rb" />
         <option value="$PROJECT_DIR$/../../trapcc-public/trapcc/compact_page_table.rb" />
-        <option value="$PROJECT_DIR$/game_of_life.rb" />
         <option value="$PROJECT_DIR$/../../trapcc-public/trapcc/debug_program.rb" />
         <option value="$PROJECT_DIR$/../../trapcc-public/trapcc/game_of_life.rb" />
         <option value="$PROJECT_DIR$/interrupt_program.rb" />
-        <option value="$PROJECT_DIR$/debug_program.rb" />
         <option value="$PROJECT_DIR$/samples/sample_program_1.rb" />
+        <option value="$PROJECT_DIR$/debug_program.rb" />
+        <option value="$PROJECT_DIR$/game_of_life.rb" />
       </list>
     </option>
   </component>
@@ -196,6 +214,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Favorites" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -220,8 +240,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Favorites" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -239,8 +257,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -624,7 +642,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39973083" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25100943" sideWeight="0.6781003" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25100943" sideWeight="0.6781003" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32097188" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -739,19 +757,15 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/samples/sample_program_1.rb</url>
-          <line>43</line>
+          <line>47</line>
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/debug_program.rb</url>
-          <line>35</line>
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="ruby-line">
-          <url>file://$PROJECT_DIR$/debug_program.rb</url>
-          <line>82</line>
+          <line>95</line>
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/samples/sample_program_1.rb</url>
-          <line>52</line>
+          <line>117</line>
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/../../trapcc-public/trapcc/debug_program.rb</url>
@@ -806,11 +820,6 @@
         <state line="3" column="10" selection-start="75" selection-end="75" vertical-scroll-proportion="0.07533235" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/debug_gui.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="47" selection-start="358" selection-end="358" vertical-scroll-proportion="0.23287672" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../trapcc-public/trapcc/interrupt_program.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="208" column="57" selection-start="7645" selection-end="7645" vertical-scroll-proportion="-0.0" />
@@ -835,28 +844,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game_of_life.rb">
+    <entry file="file://$PROJECT_DIR$/samples/sample_program_1.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="0" selection-start="1134" selection-end="1134" vertical-scroll-proportion="0.02328767" />
+        <state line="27" column="13" selection-start="890" selection-end="890" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/debug_gui.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="47" selection-start="358" selection-end="358" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/interrupt_program.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="0" selection-start="2152" selection-end="2152" vertical-scroll-proportion="0.0">
+        <state line="122" column="7" selection-start="4334" selection-end="4334" vertical-scroll-proportion="-12.6">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/debug_program.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="0" selection-start="1794" selection-end="1794" vertical-scroll-proportion="0.0">
+        <state line="6" column="42" selection-start="189" selection-end="189" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/samples/sample_program_1.rb">
+    <entry file="file://$PROJECT_DIR$/game_of_life.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="34" selection-start="1674" selection-end="1674" vertical-scroll-proportion="0.7671233">
+        <state line="38" column="25" selection-start="1186" selection-end="1186" vertical-scroll-proportion="0.79041094">
           <folding />
         </state>
       </provider>
