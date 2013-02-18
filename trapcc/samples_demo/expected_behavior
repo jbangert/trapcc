@@ -1,8 +1,0 @@
-1ff8 (dec_odd) (SP=14)
-2ff8 dec_even  (SP=10)
-1ff8 dec_odd   (SP=6)
-2ff8 dec_even  (SP=2)
-1ff8 dec_odd   (SP=2)
-3ff8 reset     (SP=16)
-
-
