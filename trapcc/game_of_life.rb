@@ -35,7 +35,7 @@ class GameOfLifeProgram
     cells.each do |c|
       next_inst = c.step_instructions(@p,next_inst)
     end
-    @p.instruction :dummy_start, :tmp_var, :const_9, next_inst, next_inst, 14
+    @p.instruction :dummy_start, :tmp_var, :const_9, next_inst, next_inst, 14   #FIXME: First instruction is broken
     @p.start :dummy_start
   end
 

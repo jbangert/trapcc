@@ -119,7 +119,7 @@
       <file leaf-file-name="game_of_life.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/game_of_life.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="25" selection-start="1186" selection-end="1186" vertical-scroll-proportion="0.79041094">
+            <state line="36" column="83" selection-start="1082" selection-end="1082" vertical-scroll-proportion="0.7438356">
               <folding />
             </state>
           </provider>
@@ -874,7 +874,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/game_of_life.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="25" selection-start="1186" selection-end="1186" vertical-scroll-proportion="0.79041094">
+        <state line="36" column="83" selection-start="1082" selection-end="1082" vertical-scroll-proportion="0.7438356">
           <folding />
         </state>
       </provider>
