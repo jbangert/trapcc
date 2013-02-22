@@ -16,7 +16,7 @@ Why on earth?
 =============
 
 To read up on the awesome idea of weird machines and their uses, see  @sergeybratus's and @halvarflake's work. In short, we are trying to find hidden state and derive computation of it in unexpected places.  
-One practical use of this technique is for code obfuscation - many (kernel) debuggers will break due to the frequent context switches (esp. cooperative debuggers like KGDB) and  analyzing the binary is going to be extraordinaly confusing, especially if normal X86 instructions and trap instructions are interleaved to do weird contol transfer.
+One practical use of this technique is for code obfuscation - many (kernel) debuggers will break due to the frequent context switches (esp. cooperative debuggers like KGDB) and  analyzing the binary is going to be extraordinaly confusing, especially if normal X86 instructions and trap instructions are interleaved to do weird control transfer.
 Furthermore, out of the many virtual machines only Bochs runs such trap based programs correctly (and there are other tricks to distinguish bochs from a real box).
 
 TBD
