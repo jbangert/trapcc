@@ -6,8 +6,7 @@ loader.o: loader.S
 	nasm -f elf32 -o $@ $<
 kernel.o: sample.c
 	gcc -c -std=c99 -m32 -o $@ $< -Wall -Wextra -nostdlib -fno-builtin -nostartfiles -nodefaultlibs -ggdb -fno-inline
-run:	kernel.bin harddisk.img
-	qemu-system-i386 -kernel kernel.bin  -net none -s -S -d int&
+
 clean:
 	rm *.o *.bin *.img sample.c
 sample.c : ../*.rb ../standalone.c *.rb

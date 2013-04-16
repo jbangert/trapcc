@@ -116,10 +116,10 @@ class Program
     encode_tss_high(pt,addr)
   end
   def output_binary(y,x, variable)
-    @outputs[[x,y]] = [:variable, variable]
+    @outputs[[10+x,y]] = [:variable, variable]
   end
   def output_fixed(y,x, character)
-    @outputs[[x,y]] = [:character, character]
+    @outputs[[10+x,y]] = [:character, character]
   end
   def encode_tss_high(pt,addr)
     pt[addr + 72] = "0x10"

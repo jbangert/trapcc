@@ -19,6 +19,14 @@ To read up on the awesome idea of weird machines and their uses, see  @sergeybra
 One practical use of this technique is for code obfuscation - many (kernel) debuggers will break due to the frequent context switches (esp. cooperative debuggers like KGDB) and  analyzing the binary is going to be extraordinaly confusing, especially if normal X86 instructions and trap instructions are interleaved to do weird contol transfer.
 Furthermore, out of the many virtual machines only Bochs runs such trap based programs correctly (and there are other tricks to distinguish bochs from a real box).
 
+
+Getting Started
+===============
+1) Go to trapcc/samples_glider
+2) make 
+3) Run in bochs (with the included .bochsrc) or on bare metal ( go to grub2, "multiboot (hd0,msdos1)/path/to/samples_glider/kernel.bin , grub 1 uses the kernel command instead)
+4) Go forth and hack
+
 TBD
 ===
 As always, one of these days we will publish a detailed paper. Until then, please hack around with the code. Share any cool creations and ask any questions on twitter!

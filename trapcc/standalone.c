@@ -301,9 +301,9 @@ void kmain(void)
      volatile int j = 0;
      begin_computation();  
      // encode_gdt(g_gdt[3],0x89,g_tss_ptr,0xFFFFFF); /*TSS0 0x18*/  
-     for(i=0; i< (1<<24); i++){
+      for(i=0; i< (1<<24); i++){
        j=4;
-     }
+       } 
    }
    //__asm __volatile ("lcall  $0x30, $0x0");
    //lcr3(INIT_PAGETABLE);
