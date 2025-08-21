@@ -94,7 +94,7 @@ class GameOfLifeProgram
       bl,b,br = n(-1,-1), n(0,-1), n(1,-1)
 
       # above here, :counter has the number of  live neighbours
-      a= dec_x_ifnot_y("#{name} cdec TL ",p,:counter,tl,"#{name}-0")
+      a=dec_x_ifnot_y("#{name} cdec TL ",p,:counter,tl,"#{name}-0")
       a=dec_x_ifnot_y("#{name} cdec T",p,:counter,t,a)
       a=dec_x_ifnot_y("#{name} cdec TR",p,:counter,tr,a)
       a=dec_x_ifnot_y("#{name} cdec L",p,:counter,l,a)
